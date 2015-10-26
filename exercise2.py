@@ -21,7 +21,20 @@ def find(input_string, substring, start, end):
     :raises:
 
     """
-    return -1
+
+    counter = 0
+    matching_position = -1
+    sub_length = len(substring)
+    start = int(start)
+    end = int(end)
+    end_index = (start + sub_length)
+    while (end_index <= end) and (matching_position < 0):
+        if input_string[(start + counter):(start + counter + sub_length)] == substring:
+            matching_position = start + counter
+        counter += 1
+        end_index = start + counter + sub_length
+
+    return matching_position
 
 
 def multi_find(input_string, substring, start, end):
@@ -37,3 +50,12 @@ def multi_find(input_string, substring, start, end):
 
     return result
 
+def main():
+    input_string = raw_input("Enter your full string:")
+    substring = raw_input("Enter your sub string:")
+    start = raw_input("Enter starting position:")
+    end = raw_input("Enter end position:")
+    result = find(input_string, substring, start, end)
+    print result
+
+main()
