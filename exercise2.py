@@ -46,16 +46,35 @@ def multi_find(input_string, substring, start, end):
     :raises:
 
     """
-    result = ""
 
-    return result
+    counter = 0
+    matching_position = [-1]
+    sub_length = len(substring)
+    start = int(start)
+    end = int(end)
+    end_index = (start + sub_length)
+    while end_index <= end:
+        if input_string[(start + counter):(start + counter + sub_length)] == substring:
+            matching_position.append(start + counter)
+        counter += 1
+        end_index = start + counter + sub_length
+
+    # if anything matching, remove the -1 value in the list
+    if len(matching_position) > 1:
+        del matching_position[0]
+
+    # convert a list to a string
+    string_holder = (",".join(str(s) for s in matching_position))
+    return string_holder
+
 
 def main():
     input_string = raw_input("Enter your full string:")
     substring = raw_input("Enter your sub string:")
     start = raw_input("Enter starting position:")
     end = raw_input("Enter end position:")
-    result = find(input_string, substring, start, end)
+    # result = find(input_string, substring, start, end)
+    result = multi_find(input_string, substring, start, end)
     print result
 
 main()
