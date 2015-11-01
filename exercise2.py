@@ -14,12 +14,15 @@ __license__ = "MIT License"
 
 def find(input_string, substring, start, end):
     """
-    Describe your function
+    Letter by letter comparisons to find any match substring inside of a string. Only one index/position is
+    returned even if multiple matchings exist
 
-    :param :
-    :return:
-    :raises:
-
+    :param input_string: the complete string user input
+    :param substring: the substring user input for comparison
+    :param start: the start position for comparison
+    :param end: the end position (end-1) for comparison
+    :return matching_position: -1 by default if nothing is found. If anything found, return the lowest index
+                                where the substring is found.
     """
 
     counter = 0
@@ -39,13 +42,17 @@ def find(input_string, substring, start, end):
 
 def multi_find(input_string, substring, start, end):
     """
-    Describe your function
+    Letter by letter comparisons to find any match substring inside of a string. All index/positions are
+    returned
 
-    :param :
-    :return:
-    :raises:
-
+    :param input_string: the complete string user input
+    :param substring: the substring user input for comparison
+    :param start: the start position for comparison
+    :param end: the end position (end-1) for comparison
+    :return matching_position: -1 by default if nothing is found. If anything found, return the lowest index
+                                where the substring is found.
     """
+
 
     counter = 0
     matching_position = [-1]

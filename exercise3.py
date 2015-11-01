@@ -5,8 +5,8 @@
 This module performs table operations on database tables
 implemented as lists of lists.
 
-"""
 
+Testing data:
 G1 = [["Number", "Surname", "Age"],
             [7274, "Robinson", 37],
             [7432, "O'Malley", 39],
@@ -18,24 +18,25 @@ G2 = [["Number", "Surname", "Age"],
             [5959, "McCowan", 89],
             [3434, "Henderson", 85],
             [2323, "Davidson", 86]]
+"""
 
 
 def union(table1, table2):
     """
-    Perform the union set operation on tables, table1 and table2.
+    After checking that the schema of both tables are the same, returns a new table that contains all
+    unique rows that appear in either table.
 
     :param table1: a table (a List of Lists)
     :param table2: a table (a List of Lists)
     :return: the resulting table
-    :raises: MismatchedAttributesException:
-        if tables t1 and t2 don't have the same attributes
+    :raises: MismatchedAttributesException: if tables t1 and t2 don't have the same attributes
     """
     combine_table = []
     if table1[0] == table2[0]:
         combine_table.append(table1[0])
         combine_table.extend(table1[1:])
-        combine_table.extend(table2[1:])
-        union_table = list(remove_duplicates(combine_table))
+        combine_table.extend(table2[1:])  # simply combine two tables
+        union_table = list(remove_duplicates(combine_table))  # remove duplicates, so all records are unique
         return union_table
     else:
         try:
@@ -46,9 +47,17 @@ def union(table1, table2):
 
 def intersection(table1, table2):
     """
-    Describe your function
+    After checking that the schema of both tables are the same, returns a new table that contains all
+    unique rows that appear in both tables.
 
+    :param table1: a table (a List of Lists)
+    :param table2: a table (a List of Lists)
+    :return: the resulting table
+    :raises: MismatchedAttributesException: if tables t1 and t2 don't have the same attributes
     """
+    # ###########################################################################################
+    # Alternate Approach: using double for loop to check each record in one list against another
+    #
     # combine_table = []
     # if table1[0] == table2[0]:
     #     combine_table.append(table1[0])
@@ -71,12 +80,15 @@ def intersection(table1, table2):
     #     return intersection_table
     # else:
     #     return combine_table
+    # ##########################################################################################
 
     intersection_table = []
-    if table1[0] == table2[0]:
-        intersection_table.append(table1[0])
+    if table1[0] == table2[0]:  # checking the schemas
+        intersection_table.append(table1[0])  # copy schema
         loop_num = len(table1)
         for counter in range(1, loop_num):
+            # for any record in table1, check any identical one in another table
+            # if any found, meaning the record is part of intersection
             if any(table1[counter] == item for item in table2):
                 intersection_table.append(table1[counter])
         return intersection_table
@@ -89,14 +101,21 @@ def intersection(table1, table2):
 
 def difference(table1, table2):
     """
-    Describe your function
+    After checking that the schema of both tables are the same, returns a new table that contains all
+    unique rows that appear in the first table but not the second.
 
+    :param table1: a table (a List of Lists)
+    :param table2: a table (a List of Lists)
+    :return: the resulting table
+    :raises: MismatchedAttributesException: if tables t1 and t2 don't have the same attributes
     """
     difference_table = []
-    if table1[0] == table2[0]:
-        difference_table.append(table1[0])
+    if table1[0] == table2[0]:  # checking the schemas
+        difference_table.append(table1[0])  # copy schema
         loop_num = len(table1)
         for counter in range(1, loop_num):
+            # for any record in table1, check any identical one in another table
+            # if no identical record found, meaning the record in table1 is unique
             if not any(table1[counter] == item for item in table2):
                 difference_table.append(table1[counter])
         return difference_table
@@ -133,5 +152,4 @@ class MismatchedAttributesException(Exception):
     """
     pass
 
-
-print union(G1, G2)
+# print union(G1, G2)
