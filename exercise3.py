@@ -7,10 +7,17 @@ implemented as lists of lists.
 
 """
 
-__author__ = 'Susan Sim'
-__email__ = "ses@drsusansim.org"
-__copyright__ = "2015 Susan Sim"
-__license__ = "MIT License"
+G1 = [["Number", "Surname", "Age"],
+            [7274, "Robinson", 37],
+            [7432, "O'Malley", 39],
+            [9824, "Darkes", 38],
+            [2323, "Davidson", 86]]
+G2 = [["Number", "Surname", "Age"],
+            [8888, "McKay", 80],
+            [7432, "O'Malley", 39],
+            [5959, "McCowan", 89],
+            [3434, "Henderson", 85],
+            [2323, "Davidson", 86]]
 
 
 def union(table1, table2):
@@ -23,7 +30,18 @@ def union(table1, table2):
     :raises: MismatchedAttributesException:
         if tables t1 and t2 don't have the same attributes
     """
-    return []
+    combine_table = []
+    if table1[0] == table2[0]:
+        combine_table.append(table1[0])
+        combine_table.extend(table1[1:])
+        combine_table.extend(table2[1:])
+        union_table = list(remove_duplicates(combine_table))
+        return union_table
+    else:
+        try:
+            raise MismatchedAttributesException("The database schemas do not match")
+        except MismatchedAttributesException, e:
+            print e
 
 
 def intersection(table1, table2):
@@ -31,7 +49,42 @@ def intersection(table1, table2):
     Describe your function
 
     """
-    return []
+    # combine_table = []
+    # if table1[0] == table2[0]:
+    #     combine_table.append(table1[0])
+    #     if len(table1) >= len(table2):
+    #         loop_num_greater = len(table1)
+    #         loop_num_less = len(table2)
+    #         big_table = list(table1)
+    #         small_table = list(table2)
+    #     else:
+    #         loop_num_greater = len(table2)
+    #         loop_num_less = len(table1)
+    #         big_table = list(table2)
+    #         small_table = list(table1)
+    #
+    #     for counter1 in range(1, loop_num_less):
+    #         for counter2 in range(1, loop_num_greater):
+    #             if small_table[counter1] == big_table[counter2]:
+    #                 combine_table.append(big_table[counter2])
+    #     intersection_table = list(remove_duplicates(combine_table))
+    #     return intersection_table
+    # else:
+    #     return combine_table
+
+    intersection_table = []
+    if table1[0] == table2[0]:
+        intersection_table.append(table1[0])
+        loop_num = len(table1)
+        for counter in range(1, loop_num):
+            if any(table1[counter] == item for item in table2):
+                intersection_table.append(table1[counter])
+        return intersection_table
+    else:
+        try:
+            raise MismatchedAttributesException("The database schemas do not match")
+        except MismatchedAttributesException, e:
+            print e
 
 
 def difference(table1, table2):
@@ -39,7 +92,19 @@ def difference(table1, table2):
     Describe your function
 
     """
-    return []
+    difference_table = []
+    if table1[0] == table2[0]:
+        difference_table.append(table1[0])
+        loop_num = len(table1)
+        for counter in range(1, loop_num):
+            if not any(table1[counter] == item for item in table2):
+                difference_table.append(table1[counter])
+        return difference_table
+    else:
+        try:
+            raise MismatchedAttributesException("The database schemas do not match")
+        except MismatchedAttributesException, e:
+            print e
 
 
 #####################
@@ -68,3 +133,5 @@ class MismatchedAttributesException(Exception):
     """
     pass
 
+
+print union(G1, G2)
