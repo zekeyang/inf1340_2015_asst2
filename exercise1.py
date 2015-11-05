@@ -14,16 +14,17 @@ __email2__ = ""  #Hana, please put your email here, thanks.
 
 def pig_latinify(word):
     """
-    Describe your function
-
-    :param :
-    :return:
+    A game to modify a word with two rules:
+    a) If a word begins with a vowel, append "yay" to then end of the word.
+    b) If the word begins with a consonant, remove all the consonants from the beginning up to
+    :param word: input word
+    :return result: the modified word
     :raises:
 
     """
 
-    while not word.isalpha():
-        word = raw_input("Input your word again:")
+    while not word.isalpha(): # to be removed
+        word = raw_input("Input your word again:") # to be removed, we don't need raw_input
     word_length = len(word)
     word = word.lower()
     # making sure the word starts with a vowel
@@ -43,9 +44,9 @@ def pig_latinify(word):
     return result
 
 
-def main():
-    user_input = raw_input("Input a word:")
-    output = pig_latinify(user_input)
-    print output
-
-main()
+# def main():
+#     user_input = raw_input("Input a word:")
+#     output = pig_latinify(user_input)
+#     print output
+#
+# main()

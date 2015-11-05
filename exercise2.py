@@ -53,7 +53,6 @@ def multi_find(input_string, substring, start, end):
                                 where the substring is found.
     """
 
-
     counter = 0
     matching_position = [-1]
     sub_length = len(substring)
