@@ -72,15 +72,3 @@ def multi_find(input_string, substring, start, end):
     # convert a list to a string
     string_holder = (",".join(str(s) for s in matching_position))
     return string_holder
-
-
-def main():
-    input_string = raw_input("Enter your full string:")
-    substring = raw_input("Enter your sub string:")
-    start = raw_input("Enter starting position:")
-    end = raw_input("Enter end position:")
-    # result = find(input_string, substring, start, end)
-    result = multi_find(input_string, substring, start, end)
-    print result
-
-main()

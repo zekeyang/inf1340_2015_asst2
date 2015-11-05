@@ -78,8 +78,6 @@ def test_union():
 # This is when schema do not have same number of columns, and columns do not have same names in the same order
 
 
-
-
 def test_intersection():
     """
     Test intersection operation.
