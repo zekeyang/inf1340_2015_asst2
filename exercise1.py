@@ -23,25 +23,27 @@ def pig_latinify(word):
 
     """
 
-    while not word.isalpha(): # to be removed
-        word = raw_input("Input your word again:") # to be removed, we don't need raw_input
-    word_length = len(word)
-    word = word.lower()
-    # making sure the word starts with a vowel
-    if word[0] == "a" or word[0] == "e" or word[0] == "i" or word[0] == "o" or word[0] == "u":
-        word += "yay"
-    # if a word is not starting with a vowel, then it must start with a consonant
+    if word.isalpha():  # to be removed
+        word_length = len(word)
+        word = word.lower()
+        # making sure the word starts with a vowel
+        if word[0] == "a" or word[0] == "e" or word[0] == "i" or word[0] == "o" or word[0] == "u":
+            word += "yay"
+        # if a word is not starting with a vowel, then it must start with a consonant
+        else:
+            for counter in range(word_length):
+                # put each leading consonant to the end of the word
+                if not (word[0] == "a" or word[0] == "e" or word[0] == "i" or word[0] == "o" or word[0] == "u"):
+                    leading_char = word[0]
+                    word = word.replace(word[0], "", 1)
+                    word += leading_char
+                    counter += 1
+            word += "ay"
+        result = word
+        return result
     else:
-        for counter in range(word_length):
-            # put each leading consonant to the end of the word
-            if not (word[0] == "a" or word[0] == "e" or word[0] == "i" or word[0] == "o" or word[0] == "u"):
-                leading_char = word[0]
-                word = word.replace(word[0], "", 1)
-                word += leading_char
-                counter += 1
-        word += "ay"
-    result = word
-    return result
+        result = ""
+        return result
 
 
 # def main():
