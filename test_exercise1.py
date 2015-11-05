@@ -23,5 +23,10 @@ def test_basic():
     assert pig_latinify("scratch") == "atchscray"
     assert pig_latinify("is") == "isyay"
     assert pig_latinify("apple") == "appleyay"
+    assert pig_latinify("beyonce") == "eyoncebay"
+    assert pig_latinify("jayz") == "ayzjay"
+    assert pig_latinify("carter") == "artercay"
+    assert pig_latinify("lager") == "agerlay"
+    assert pig_latinify("ale") == "aleyay"
 
 
