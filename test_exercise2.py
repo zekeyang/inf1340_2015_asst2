@@ -35,4 +35,4 @@ def test_multi_find_basic():
 
     assert multi_find("Fa la la la la, la la la la", "a", 0, 20) == "1,4,7,10,13, 17, 20, 23, 26"
 
-    assert multi_find("Do Re Mi Fa Sol La Ti", "deer", 0, 20) == -1 
+    assert multi_find("Do Re Mi Fa Sol La Ti", "deer", 0, 20) == -1

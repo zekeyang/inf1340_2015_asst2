@@ -62,21 +62,20 @@ def test_union():
 
     assert is_equal(result, union(GRADUATES, MANAGERS))
 
-# Write test for incorrect output
-# If schema don't match, function should raise MismatchedAttributesException error
-# Test pets operation to include a table with various schema
-
     result = [["Color", "Name", "Weight"],
-    ["brown", "Barker", 32],
-    ["white", "Gunner", 7],
-    ["black", "Drake", 13],
-    ["black", "Shannon", 18]]
+                ["brown", "Barker", 32],
+                ["white", "Gunner", 7],
+                ["black", "Drake", 13],
+                ["black", "Shannon", 18]]
 
     assert is_equal(result, union(DOGS, CATS))
 
 # Write test that raises MismatchedAttributesException
 # This is when schema do not have same number of columns, and columns do not have same names in the same order
 
+    result = "The database schemas do not match."
+
+    assert is_equal(result, union(GRADUATES, CATS))
 
 def test_intersection():
     """
@@ -96,7 +95,12 @@ def test_intersection():
 
     assert is_equal(result, intersection(DOGS, CATS))
 
-# Write test for incorrect output
+# Write test that raises MismatchedAttributesException
+# This is when schema do not have same number of columns, and columns do not have same names in the same order
+
+    result = "The database schemas do not match."
+
+    assert is_equal(result, intersection(MANAGERS, DOGS))
 
 def test_difference():
     """
@@ -115,4 +119,9 @@ def test_difference():
 
     assert is_equal(result, difference(DOGS, CATS))
 
-# Write test for incorrect output
+# Write test that raises MismatchedAttributesException
+# This is when schema do not have same number of columns, and columns do not have same names in the same order
+
+    result = "The database schemas do not match."
+
+    assert is_equal(result, difference(MANAGERS, CATS))

@@ -27,6 +27,9 @@ def test_basic():
     assert pig_latinify("jayz") == "ayzjay"
     assert pig_latinify("carter") == "artercay"
     assert pig_latinify("lager") == "agerlay"
-    assert pig_latinify("ale") == "aleyay"
+    assert pig_latinify("witbier") == "itbierway"
+    assert pig_latinify("octopus") == "octopusyay"
+    assert pig_latinify("41") == "" # This test case shows the result of an invalid input and should display nothing
+
 
 
