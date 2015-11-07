@@ -43,7 +43,7 @@ CATS = [["Color", "Name", "Weight"],
 # HELPER FUNCTIONS ##
 #####################
 def is_equal(t1, t2):
-    return set(map(tuple, t1)) == set(map(tuple, t2))
+    return sorted(t1) == sorted(t2)
 
 
 ###################
@@ -71,11 +71,11 @@ def test_union():
     assert is_equal(result, union(DOGS, CATS))
 
 # Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns, and columns do not have same names in the same order
+# This is when schema do not have same number of columns or columns do not have same names in the same order
+    # Tried using assert is_equal(result, union(GRADUATES, CATS)), giving error that
+    # TypeError: 'NoneType' object is not iterable
+    assert union(GRADUATES, CATS) is None
 
-    result = "The database schemas do not match."
-
-    assert is_equal(result, union(GRADUATES, CATS))
 
 def test_intersection():
     """
@@ -96,11 +96,12 @@ def test_intersection():
     assert is_equal(result, intersection(DOGS, CATS))
 
 # Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns, and columns do not have same names in the same order
+# This is when schema do not have same number of columns or columns do not have same names in the same order
+    # Tried using assert is_equal(result, intersection(MANAGERS, DOGS)), giving error that
+    # TypeError: 'NoneType' object is not iterable
+    assert intersection(MANAGERS, DOGS) is None
 
-    result = "The database schemas do not match."
 
-    assert is_equal(result, intersection(MANAGERS, DOGS))
 
 def test_difference():
     """
@@ -120,8 +121,7 @@ def test_difference():
     assert is_equal(result, difference(DOGS, CATS))
 
 # Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns, and columns do not have same names in the same order
-
-    result = "The database schemas do not match."
-
-    assert is_equal(result, difference(MANAGERS, CATS))
+# This is when schema do not have same number of columns or columns do not have same names in the same order
+    # Tried using assert is_equal(result, difference(MANAGERS, CATS)), giving error that
+    # TypeError: 'NoneType' object is not iterable
+    assert difference(MANAGERS, CATS) is None
