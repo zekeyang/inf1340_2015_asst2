@@ -12,7 +12,7 @@ __copyright__ = "2015 Susan Sim"
 __license__ = "MIT License"
 
 
-from exercise3 import union, intersection, difference
+from exercise3 import union, intersection, difference, MismatchedAttributesException
 
 
 ###########
@@ -70,11 +70,16 @@ def test_union():
 
     assert is_equal(result, union(DOGS, CATS))
 
-# Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns or columns do not have same names in the same order
-    # Tried using assert is_equal(result, union(GRADUATES, CATS)), giving error that
-    # TypeError: 'NoneType' object is not iterable
-    assert union(GRADUATES, CATS) is None
+
+def test_union_unexpected():
+    """
+    Test that raises MismatchedAttributesException
+    This is when schema do not have same number of columns or columns do not have same names in the same order
+    """
+    try:
+        union(GRADUATES, CATS)
+    except MismatchedAttributesException:
+        assert True
 
 
 def test_intersection():
@@ -95,11 +100,16 @@ def test_intersection():
 
     assert is_equal(result, intersection(DOGS, CATS))
 
-# Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns or columns do not have same names in the same order
-    # Tried using assert is_equal(result, intersection(MANAGERS, DOGS)), giving error that
-    # TypeError: 'NoneType' object is not iterable
-    assert intersection(MANAGERS, DOGS) is None
+
+def test_intersection_unexpected():
+    """
+    test that raises MismatchedAttributesException
+    This is when schema do not have same number of columns or columns do not have same names in the same order
+    """
+    try:
+        intersection(MANAGERS, DOGS)
+    except MismatchedAttributesException:
+        assert True
 
 
 
@@ -120,8 +130,13 @@ def test_difference():
 
     assert is_equal(result, difference(DOGS, CATS))
 
-# Write test that raises MismatchedAttributesException
-# This is when schema do not have same number of columns or columns do not have same names in the same order
-    # Tried using assert is_equal(result, difference(MANAGERS, CATS)), giving error that
-    # TypeError: 'NoneType' object is not iterable
-    assert difference(MANAGERS, CATS) is None
+
+def test_difference_unexpected():
+    """
+    Test that raises MismatchedAttributesException
+    This is when schema do not have same number of columns or columns do not have same names in the same order
+    """
+    try:
+        difference(MANAGERS, CATS)
+    except MismatchedAttributesException:
+        assert True
